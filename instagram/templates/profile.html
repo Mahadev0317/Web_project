@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <title>Your Profile</title>
+    <style type="text/css">
+        .card {
+    padding-top: 20px;
+    margin: 10px 0 20px 0;
+    background-color: rgba(214, 224, 226, 0.2);
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgba(214, 224, 226, 0.2);
+}
+.card.hovercard .cardheader {
+    background-size: cover;
+    height: 100px;
+}
+.card.hovercard .avatar {
+    position: relative;
+    top: -50px;
+    margin-bottom: -50px;
+}
+
+.card.hovercard .avatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+.card.hovercard .info {
+    padding: 4px 8px 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4 col-sm-6">
+            <div class="card hovercard">
+                <div class="cardheader">
+                </div>
+                <div class="avatar">
+                    {% if a.image == "default.jpg" %}
+                        {% load static %}
+                        <img src="{% static 'default.jpg' %}">
+                    {% else %}
+                        <img src="{{ a.image.url }}">
+                    {% endif %}
+                </div>
+                <div class="info">
+                    <font color="royalblue"> <strong><u>{{a.username}}</u></strong> </font><br><br>
+                    <label><b>Phone No : </b></label>&nbsp; {{a.phone}}<br><br>
+                    <label><b>Email id : </b></label>&nbsp; {{a.email}}<br><br>
+                    <label><b>Date Of Birth : </b></label>&nbsp; {{a.dob }}<br><br>
+                    <a href="{% url 'Edit_Profile' %}">
+                        <i class="fa fa-edit" aria-hidden="true"></i>Edit Profile</a>&nbsp; &nbsp; &nbsp;
+                    <a href="{% url 'Friends' %}" style="color : red">
+                        <i class="fa fa-group" aria-hidden="true"></i></i>Friends </a>
+                </div>
+            </div>
+            <div><i class="fa fa-picture-o" aria-hidden="true" style="font-size: 24px"><strong>Posts!</strong></i></div>
+            {% if b %}
+                {% for i in b %}
+                    <img src="{{ i.posts.url }}" width="200" ><br>
+                    &#10084;
+                {% endfor %}
+            {% else %}
+                <p>&nbsp;&nbsp; Upload your first post! <a href="{% url 'Upload' %}">upload</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <title>Feed</title>
+    <style>
+        .card-img-top {
+            height : 16%;
+            width : 17%;
+        }
+    </style>
+</head>
+<body>
+<div class="container"><br>
+    {% for temp in b %}
+        {% for pic in temp %}
+            <div class="card" style="width: 20rem">
+                <img src="{{ pic.userid.image.url }}" class="card-img-top img-fluid" alt="Card image">
+                <a href="/View_Profile/?friend={{pic.userid.username}}" style="font-size:18px">
+                    {{ pic.userid.username }}</a>
+                <img src="{{ pic.posts.url }}" width="300" height="200">
+                &#10084;
+            </div><br>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+{% endblock %}

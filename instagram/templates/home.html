@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    .btn {
+      border: 2px solidwhite;
+      background-color: white;
+      color: black;
+      padding: 9px 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="container"><br>
+        {% if messages %}
+                {% for message in messages %}
+                    &#10004;{{ message }}
+                {% endfor %}<br><br>
+            {% endif %}
+        {% load static %}
+        <img src="{% static 'instagram-logo.jpg' %}" width="280" height="100">
+        <p>Have account? &nbsp;<a href="{% url 'Login' %}" class="btn btn-primary outline">Login</a></p>
+        <p>New account? &nbsp;<a href="{% url 'Register' %}" class="btn btn-primary outline">Signup</a></p>
+    </div>
+</body>
+</html>

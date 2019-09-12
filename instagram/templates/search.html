@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <title>Search</title>
+</head>
+<body>
+<div class="container">
+    <br><h1>Search !!</h1>
+    {% if messages %}
+       {% for message in messages %}
+           &#9888{{ message }}
+       {% endfor %}<br>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" id="username" class="form-control" required style="width:200"><br>
+        <input type="submit" class="btn-basic outline" value="Search">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

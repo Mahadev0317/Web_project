@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <title>Notifications</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .bs-example{
+        margin: 20px;
+    }
+    .alert{
+        width: 400px;
+        height: 50px;
+    }
+    </style>
+</head>
+<body>
+<div class="container"><br>
+    <i class="fa fa-address-book" aria-hidden="true" style="font-size: 24px"> Friend Requests  </i>
+    {% if reqst %}
+        {% for i in reqst %}
+            <div class="bs-example">
+                <div class="alert alert-info alert-dismissible fade show">
+                    <a href="View_Profile/?friend={{ i }}" style="color:black; font-size:18px">{{ i }}</a>
+                    sent you request. <a href="Add/?friend={{ i }}">Accept</a>
+                    <a href="Reject/?friend={{ i }}" style="color : red">Remove</a><br><br>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="bs-example">
+            <div class="alert alert-danger alert-dismissible fade show">
+                   No new requets!?
+            </div>
+        </div>
+    {% endif %}<br>
+    <i class="fa fa-bell" aria-hidden="true" style="font-size: 24px">Notifications</i>
+    {% if inf %}
+            {% for i in inf %}
+        <div class="bs-example">
+            <div class="alert alert-info alert-dismissible fade show">
+                <a href="View_Profile/?friend={{ i }}">{{ i }}</a> accepted your request. <br><br>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        </div>
+            {% endfor %}
+    {% else %}
+        <div class="bs-example">
+            <div class="alert alert-danger alert-dismissible fade show">
+                   No new notifications !?
+            </div>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
+{% endblock %}
